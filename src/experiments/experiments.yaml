@@ -1,0 +1,32 @@
+# src/experiments/experiments.yaml
+
+experiments:
+  experiment_1:
+    params_fixed:
+      query: Posso cancelar um serviço contratado e quais são as condições para isso?
+      system_message: ""
+      top_k: 5
+    params_variations:
+      llm_model:
+        - {provider: "vertex", model: "gemini-1.5-pro-001"}
+        - {provider: "vertex", model: "gemini-1.5-flash-001"}
+        - {provider: "openai", model: "gpt-4o-mini-2024-07-18"}
+        - {provider: "anthropic", model: "claude-3-5-sonnet-20240620"}
+      embeddings: 
+        - {csv: "data/processed/L8078compilado_processed_openai.csv", model: "openai"}
+        - {csv: "data/processed/L8078compilado_processed_vertex.csv", model: "vertex"}
+
+  experiment_2:
+    params_fixed:
+      query: Quais são os meus direitos ao contratar um serviço de telefonia ou internet?
+      system_message: ""
+      top_k: 5
+    params_variations:
+      llm_model:
+        - {provider: "vertex", model: "gemini-1.5-pro-001"}
+        - {provider: "vertex", model: "gemini-1.5-flash-001"}
+        - {provider: "openai", model: "gpt-4o-mini-2024-07-18"}
+        - {provider: "anthropic", model: "claude-3-5-sonnet-20240620"}
+      embeddings: 
+        - {csv: "data/processed/L8078compilado_processed_openai.csv", model: "openai"}
+        - {csv: "data/processed/L8078compilado_processed_vertex.csv", model: "vertex"}

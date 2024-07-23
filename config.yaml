@@ -1,0 +1,76 @@
+# config.yaml
+
+embeddings:
+  default: "openai"
+  default_chunk_size: 512
+  models:
+    openai:
+      chunk_size: 512
+      api_key: ""  # Move to environment variable or secure vault in production
+      model: "text-embedding-3-small"
+    vertex:
+      chunk_size: 512
+      project_id: "multimodal-rag-gemini"
+      location: "us-central1"
+      model: "text-embedding-004"
+
+llm:
+  assistant:
+    system_message: ""
+  evaluator:
+    system_message: ""
+  groundedness_evaluator:
+    system_message: ""
+  providers:
+    openai:
+      llm_models:
+        gpt-4o-2024-05-13:
+          model: "gpt-4o-2024-05-13"
+          api_key: ""  # Move to environment variable or secure vault in production
+          max_tokens: 1000
+          temperature: 0.7
+          prices:
+            input_token: 0.000005  # $5.00 / 1M tokens
+            output_token: 0.000015  # $15.00 / 1M tokens
+        gpt-4o-mini-2024-07-18:
+          model: "gpt-4o-mini-2024-07-18"
+          api_key: ""  # Move to environment variable or secure vault in production
+          max_tokens: 1000
+          temperature: 0.7
+          prices:
+            input_token: 0.000005  # TODO: Update with the right data
+            output_token: 0.000015  # TODO: Update with the right data
+    vertex:
+      llm_models:
+        gemini-1.5-pro-001:
+          model: "gemini-1.5-pro-001"
+          project_id: "multimodal-rag-gemini"
+          location: "us-central1"
+          max_tokens: 1000
+          temperature: 0.7
+          prices:
+            input_token_short: 0.0000035  # $3.50 / 1M tokens (for prompts up to 128K tokens)
+            input_token_long: 0.000007  # $7.00 / 1M tokens (for prompts longer than 128K tokens)
+            output_token_short: 0.0000105  # $10.50 / 1M tokens (for prompts up to 128K tokens)
+            output_token_long: 0.000021  # $21.00 / 1M tokens (for prompts longer than 128K tokens)
+        gemini-1.5-flash-001:
+          model: "gemini-1.5-flash-001"
+          project_id: "multimodal-rag-gemini"
+          location: "us-central1"
+          max_tokens: 1000
+          temperature: 0.7
+          prices:
+            input_token_short: 0.00000035  # $0.35 / 1 million tokens (for prompts up to 128K tokens)
+            input_token_long: 0.0000007  # $0.70 / 1 million tokens (for prompts longer than 128K)
+            output_token_short: 0.00000105  # $1.05 / 1 million tokens (for prompts up to 128K tokens)
+            output_token_long: 0.0000021  # $2.10 / 1 million tokens (for prompts longer than 128K)
+    anthropic:
+      llm_models:
+        claude-3-5-sonnet-20240620:
+          model: "claude-3-5-sonnet-20240620"
+          api_key: ""
+          max_tokens: 1000
+          temperature: 0.7
+          prices:
+            input_token: 0.000003  # $3.00 / 1M tokens
+            output_token: 0.000015  # $15.00 / 1M tokens
